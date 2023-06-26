@@ -1,0 +1,4 @@
+# library for face detection and face landmark detection
+dlib 
+# library for image processing
+opencv-python 

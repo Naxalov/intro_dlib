@@ -19,16 +19,20 @@ faces = detector(gray)
 # Loop through faces
 for face in faces:
     # Get face landmarks
-    landmarks = predictor(gray, face)
+    landmarks = predictor(gray, face) # full 
     # Print type of landmarks
     print(type(landmarks))
-    # Loop through landmarks
-    for n in range(0, 5):
-        # Get x and y coordinates
-        x = landmarks.part(n).x
-        y = landmarks.part(n).y
-        # Draw a circle
-        cv2.circle(img, (x, y), 2, (255, 0, 0), -1)
+    # Draw left eye landmarks
+    cv2.circle(img, (landmarks.part(0).x, landmarks.part(0).y), 2, (0, 0, 255), 2) # left eye
+    cv2.circle(img, (landmarks.part(1).x, landmarks.part(1).y), 2, (0, 0, 255), 2) # right eye
+    # Draw right eye landmarks
+    cv2.circle(img, (landmarks.part(2).x, landmarks.part(2).y), 2, (0, 0, 255), 2) # nose
+    cv2.circle(img, (landmarks.part(3).x, landmarks.part(3).y), 2, (0, 0, 255), 2) # left mouth
+    # Draw nose landmarks
+    cv2.circle(img, (landmarks.part(4).x, landmarks.part(4).y), 2, (0, 0, 255), 2) # right mouth
+    
+    # Draw mouth landmarks
+    # cv2.circle(img, (landmarks.part(5).x, landmarks.part(5).y), 2, (0, 0, 255), 2) # right mouth
     # Draw rectangle around face
     cv2.rectangle(img, (face.left(), face.top()), (face.right(), face.bottom()), (0, 255, 0), 2)
 
